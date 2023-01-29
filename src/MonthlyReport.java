@@ -1,12 +1,25 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class MonthlyReport {
-    MonthlyReport(int number){
-        numberMonth=number;
-    }
     int numberMonth;
     ArrayList<Transaction> monthExpenses = new ArrayList<>();
     ArrayList<Transaction> monthIncome = new ArrayList<>();
+    MonthlyReport(List<String> lines, int month) {
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            String[] lineContents = line.split(",");
+            Transaction a = new Transaction(lineContents[0], Boolean.parseBoolean(lineContents[1]), Double.parseDouble(lineContents[2]), Double.parseDouble(lineContents[3]));
+            if (Boolean.parseBoolean(lineContents[1])) {
+                monthExpenses.add(a);
+            } else {
+                monthIncome.add(a);
+            }
+            numberMonth= month;
+        }
+    }
+
+
     public int getSum(ArrayList<Transaction> a){
         int sum=0;
         for(int i=0;i<a.size();i++){

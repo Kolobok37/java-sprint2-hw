@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class Verification {
+
     static public void verificationMonth(int year, YearlyReport yearReport,StorageMonthReportInYaer monthReport){
         boolean variableCheck=false;
-        if(!yearReport.getIsEmptyYearReport(yearReport,year))
+        if(!yearReport.getIsEmptyYearReport(year))
         {
             System.out.println("Нет загруженных годовых отчётов. Загрузите отчёт и повторите попытку");
             variableCheck=true;

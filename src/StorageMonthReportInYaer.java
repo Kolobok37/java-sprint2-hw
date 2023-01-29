@@ -9,17 +9,19 @@ public class StorageMonthReportInYaer {
         double[] sum=new double[]{sumExpenses,sumIncome};
         return sum;
     }
-    public void getReport(int year, ArrayList<MonthlyReport> a,AllMonthReport allMonth) {
+    public void getReport(int year,AllMonthReport allMonth) {
         System.out.println("Месячные отчёты за " + year +" год:");
         Transaction b = new Transaction();
-        for(int i=0;i<a.size();i++){
-            System.out.println(a.get(i).numberMonth+ " месяц:");
-            b=a.get(i).getMax(a.get(i).monthIncome);
+        for(int i=0;i<allMonthReportInYear.size();i++){
+            System.out.println(allMonthReportInYear.get(i).numberMonth+ " месяц:");
+            b=allMonthReportInYear.get(i).getMax(allMonthReportInYear.get(i).monthIncome);
             System.out.println("Самый прибыльний товар: "+b.itemName+" на сумму "+b.getAmount(b));
-            b=a.get(i).getMax(a.get(i).monthExpenses);
+            b=allMonthReportInYear.get(i).getMax(allMonthReportInYear.get(i).monthExpenses);
             System.out.println("Cамые большие траты на: "+b.itemName+" на сумму "+b.getAmount(b));
         }
     }
+
+
 
 }
 

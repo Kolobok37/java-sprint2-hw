@@ -14,7 +14,7 @@ public class ReportsService {
             System.out.println("Статистики за этот год нет. Проверьте файлы и повторите попытку.\n");
             return;
         }
-            allMonth.storageAllMonthReport.get(year).getReport(year);
+            allMonth.printReport(year);
     }
     public void getReportYear(int year){
             allYear.getReportYear(year,allYear.yearReportExpenses.get(year),allYear.yearReportIncome.get(year));
@@ -29,6 +29,7 @@ public class ReportsService {
             System.out.println("Нет загруженных годовых отчётов. Загрузите отчёт и повторите попытку.");
             return;
         }
+
         Verification.verificationMonth(year, allYear,allMonth.storageAllMonthReport.get(year));
     }
 }

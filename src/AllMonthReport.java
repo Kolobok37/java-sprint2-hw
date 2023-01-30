@@ -18,4 +18,9 @@ public class AllMonthReport {
     public boolean checkYear(int year) {
         return storageAllMonthReport.containsKey(year);
     }
+
+public void printReport(int year){
+    System.out.println("Месячные отчёты за " + year +" год:");
+    storageAllMonthReport.get(year).getReport();
+}
 }

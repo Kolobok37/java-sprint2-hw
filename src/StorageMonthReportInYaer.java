@@ -4,23 +4,21 @@ import java.util.HashMap;
 public class StorageMonthReportInYaer {
     ArrayList<MonthlyReport> allMonthReportInYear = new ArrayList<>();
     public double getSumExpenses(int numberMonth){
-        double sumExpenses=allMonthReportInYear.get(numberMonth).getSum(allMonthReportInYear.get(numberMonth).monthExpenses);
+        double sumExpenses=allMonthReportInYear.get(numberMonth).getSumExpenses();
         return sumExpenses;
     }
 
     public double getSumIncome(int numberMonth){
-        double sumIncome=allMonthReportInYear.get(numberMonth).getSum(allMonthReportInYear.get(numberMonth).monthIncome);
+        double sumIncome=allMonthReportInYear.get(numberMonth).getSumExpenses();
         return sumIncome;
     }
-    public void getReport(int year) {
-        System.out.println("Месячные отчёты за " + year +" год:");
-        Transaction b = new Transaction();
+    public void getReport() {
         for(int i=0;i<allMonthReportInYear.size();i++){
             System.out.println(allMonthReportInYear.get(i).numberMonth+ " месяц:");
-            b=allMonthReportInYear.get(i).getMax(allMonthReportInYear.get(i).monthIncome);
-            System.out.println("Самый прибыльний товар: "+b.itemName+" на сумму "+b.getAmount(b));
-            b=allMonthReportInYear.get(i).getMax(allMonthReportInYear.get(i).monthExpenses);
-            System.out.println("Cамые большие траты на: "+b.itemName+" на сумму "+b.getAmount(b));
+            TransactionMonth b=allMonthReportInYear.get(i).getMaxIncome();
+            System.out.println("Самый прибыльний товар: "+b.itemName+" на сумму "+b.getAmount());
+            b=allMonthReportInYear.get(i).getMaxExpenses();
+            System.out.println("Cамые большие траты на: "+b.itemName+" на сумму "+b.getAmount());
         }
     }
 

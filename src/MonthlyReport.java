@@ -3,13 +3,13 @@ import java.util.List;
 
 public class MonthlyReport {
     int numberMonth;
-    ArrayList<Transaction> monthExpenses = new ArrayList<>();
-    ArrayList<Transaction> monthIncome = new ArrayList<>();
+    ArrayList<TransactionMonth> monthExpenses = new ArrayList<>();
+    ArrayList<TransactionMonth> monthIncome = new ArrayList<>();
     MonthlyReport(List<String> lines, int month) {
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i);
             String[] lineContents = line.split(",");
-            Transaction a = new Transaction(lineContents[0], Boolean.parseBoolean(lineContents[1]), Double.parseDouble(lineContents[2]), Double.parseDouble(lineContents[3]));
+            TransactionMonth a = new TransactionMonth(lineContents[0], Boolean.parseBoolean(lineContents[1]), Double.parseDouble(lineContents[2]), Double.parseDouble(lineContents[3]));
             if (Boolean.parseBoolean(lineContents[1])) {
                 monthExpenses.add(a);
             } else {
@@ -20,23 +20,41 @@ public class MonthlyReport {
     }
 
 
-    public int getSum(ArrayList<Transaction> a){
+    public int getSumExpenses(){
+        int sumExpenses=0;
+        for(int i=0;i<monthExpenses.size();i++){
+            sumExpenses+=monthExpenses.get(i).quantity*monthExpenses.get(i).sumOfOne;
+        }
+        return sumExpenses;
+    }
+    public int getSumIncome(){
         int sum=0;
-        for(int i=0;i<a.size();i++){
-            sum+=a.get(i).quantity*a.get(i).sumOfOne;
+        for(int i=0;i<monthIncome.size();i++){
+            sum+=monthIncome.get(i).quantity*monthIncome.get(i).sumOfOne;
         }
         return sum;
     }
 
-    public Transaction getMax(ArrayList<Transaction> expenses){
+    public TransactionMonth getMaxExpenses(){
         double max=0;
-        Transaction a = new Transaction();
-        for(int i=0;i<expenses.size();i++){
-            if(max<expenses.get(i).getAmount(expenses.get(i))){
-                max = expenses.get(i).getAmount(expenses.get(i));
-                a = expenses.get(i);
+        int j=0;
+        for(int i=0;i<monthExpenses.size();i++){
+            if(max<monthExpenses.get(i).getAmount()){
+                max = monthExpenses.get(i).getAmount();
+                j=i;
             }
         }
-        return a;
+        return monthExpenses.get(j);
+    }
+    public TransactionMonth getMaxIncome(){
+        double max=0;
+        int j=0;
+        for(int i=0;i<monthIncome.size();i++){
+            if(max<monthIncome.get(i).getAmount()){
+                max = monthIncome.get(i).getAmount();
+                j=i;
+            }
+        }
+        return monthIncome.get(j);
     }
 }

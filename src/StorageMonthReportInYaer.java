@@ -3,13 +3,16 @@ import java.util.HashMap;
 
 public class StorageMonthReportInYaer {
     ArrayList<MonthlyReport> allMonthReportInYear = new ArrayList<>();
-    public double[] getSum( ArrayList<MonthlyReport> b, int i){
-            double sumExpenses =b.get(i).getSum(b.get(i).monthExpenses);
-            double sumIncome=b.get(i).getSum(b.get(i).monthIncome);
-        double[] sum=new double[]{sumExpenses,sumIncome};
-        return sum;
+    public double getSumExpenses(int numberMonth){
+        double sumExpenses=allMonthReportInYear.get(numberMonth).getSum(allMonthReportInYear.get(numberMonth).monthExpenses);
+        return sumExpenses;
     }
-    public void getReport(int year,AllMonthReport allMonth) {
+
+    public double getSumIncome(int numberMonth){
+        double sumIncome=allMonthReportInYear.get(numberMonth).getSum(allMonthReportInYear.get(numberMonth).monthIncome);
+        return sumIncome;
+    }
+    public void getReport(int year) {
         System.out.println("Месячные отчёты за " + year +" год:");
         Transaction b = new Transaction();
         for(int i=0;i<allMonthReportInYear.size();i++){

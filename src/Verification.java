@@ -3,23 +3,14 @@ import java.util.ArrayList;
 public class Verification {
 
     static public void verificationMonth(int year, YearlyReport yearReport,StorageMonthReportInYaer monthReport){
-        boolean variableCheck=false;
-        if(!yearReport.getIsEmptyYearReport(year))
-        {
-            System.out.println("Нет загруженных годовых отчётов. Загрузите отчёт и повторите попытку");
-            variableCheck=true;
-        }
-        if(variableCheck){
-            return;
-        }
-
+        ArrayList<YearReportByMonth> expensesForYear = yearReport.yearReportExpenses.get(year);
         ArrayList<Integer> monthMistake = new ArrayList<>();
-        for(int i=0;i<yearReport.yearReportExpenses.get(year).size();i++){
-                if (!(yearReport.yearReportExpenses.get(year).get(i).amount==monthReport.getSum(monthReport.allMonthReportInYear, i)[0])){
+        for(int i=0;i<expensesForYear.size();i++){
+                if (!(expensesForYear.get(i).amount==monthReport.getSumExpenses(i))){
                     monthMistake.add(monthReport.allMonthReportInYear.get(i).numberMonth);
                     continue;
                 }
-                if (!(yearReport.yearReportIncome.get(year).get(i).amount==monthReport.getSum(monthReport.allMonthReportInYear, i)[1])){
+                if (!(expensesForYear.get(i).amount==monthReport.getSumIncome(i))){
                     monthMistake.add(monthReport.allMonthReportInYear.get(i).numberMonth);
                 }
 
@@ -34,4 +25,5 @@ public class Verification {
             }
         }
     }
+
 }

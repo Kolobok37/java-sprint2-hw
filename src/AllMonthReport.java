@@ -16,11 +16,6 @@ public class AllMonthReport {
         }
     }
     public boolean checkYear(int year) {
-        if (storageAllMonthReport.containsKey(year)) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        return storageAllMonthReport.containsKey(year);
     }
 }
